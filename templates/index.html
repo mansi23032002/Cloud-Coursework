@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BigQuery Dashboard</title>
+</head>
+<body>
+    <h1>Select a Query</h1>
+    <ul>
+        <li><a href="/?query=1">Monthly Revenue by Gender</a></li>
+        <li><a href="/?query=2">Top 10 Product Categories by Profit</a></li>
+    </ul>
+
+    {% if data %}
+        <h2>Results for Query {{ query }}</h2>
+        <table border="1">
+            <tr>
+                {% for col in data[0].keys() %}
+                    <th>{{ col }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in data %}
+                <tr>
+                    {% for val in row.values() %}
+                        <td>{{ val }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+</body>
+</html>
